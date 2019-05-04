@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Le réseau Polytech</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  <script type="text/javascript">
+    function init_markers() {
+      var plotll, plotmark, url ;
+      var map = new L.Map('map');
+	  
+      // Utilisation de OpenStreetmap pour les cartes
+      var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+      var osm = new L.TileLayer(osmUrl, {minZoom: 3, maxZoom: 15, attribution: osmAttrib});
+      map.addLayer(osm);
+	
+      // code pour Tours:  
+      plotll = new L.LatLng(47.363536675068296,0.6873321533203125, true);
+      plotmark = new L.Marker(plotll);
+      map.addLayer(plotmark);      
+      plotmark.bindPopup('<a href="http://polytech.univ-tours.fr">Tours</a>');
+    	  
+      // code pour Lille:    
+      plotll = new L.LatLng(50.60759,3.13604, true);
+      plotmark = new L.Marker(plotll);
+      map.addLayer(plotmark);
+      plotmark.bindPopup('<a href="http://www.polytech-lille.fr">Lille</a>');
+  	   
+      map.setView(plotll,6); // permet de centrer la carte 
+    } 
+  </script>
+
+  <style type="text/css">
+    #map { height: 600px; }
+  </style>
+ </head>
+
+ <body onload="init_markers();">
+   <header>Le réseau Polytech </header>
+     <section>
+       <div id="map"</div>
+     </section>   
+ </body>
+</html>
